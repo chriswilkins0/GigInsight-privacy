@@ -85,6 +85,29 @@
     @media (max-width:760px){nav{gap:10px}nav a:nth-child(1),nav a:nth-child(3){display:none}.hero{grid-template-columns:1fr;padding:44px 0 32px;min-height:unset;gap:12px}.hero-side{min-height:350px}.phone{height:370px;width:177px;border-width:5px;border-radius:27px}.feature-grid,.install-grid{grid-template-columns:1fr}.roadmap-grid{grid-template-columns:1fr}.roadmap-box{min-height:unset}.feedback{flex-direction:column;text-align:center;align-items:stretch}.feedback .buttons{justify-content:center}.section-head{align-items:start;flex-direction:column}.feature{min-height:245px}.shot-wrap .shot{height:313px;width:146px;min-width:146px}}
     @media (max-width:390px){.brand{font-size:1.1rem}.topbar .wrap{gap:8px}nav a{font-size:.78rem}.feature .copy{padding:17px 0 14px 14px}.feature p{font-size:.8rem}.shot-wrap .shot{width:120px;min-width:120px;height:258px}}
     @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+    .os-icon{width:21px;height:21px;flex:none;display:block}
+    .platform-btn{min-height:50px;text-align:center}
+    .actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));max-width:565px}
+    .actions .platform-btn{width:100%;padding:13px 12px}
+    .feedback .buttons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+    .feedback .buttons .platform-btn{background:linear-gradient(110deg,#7167f6,#a18cff);color:#fff;min-width:175px}
+    .install-card .platform-btn{width:100%}
+    .preview-trigger{appearance:none;border:0;padding:0;margin:0;background:transparent;color:inherit;cursor:zoom-in;display:block;flex:none}
+    .preview-trigger:focus-visible{outline:3px solid var(--accent2);outline-offset:3px}
+    .preview-trigger.hero-preview{position:relative;z-index:2}
+    .preview-trigger.hero-preview .phone{cursor:zoom-in}
+    .feature .preview-trigger{width:100%;height:100%;display:flex;justify-content:center;align-items:stretch}
+    .zoom-hint{font-size:.8rem;color:var(--accent2);font-weight:650;margin:5px 0 15px}
+    .lightbox{border:1px solid #4e5682;background:#0b0e1a;color:white;padding:0;border-radius:17px;box-shadow:0 20px 90px #000b;max-width:calc(100vw - 20px);max-height:calc(100dvh - 20px);overflow:hidden}
+    .lightbox::backdrop{background:rgba(0,0,0,.85);backdrop-filter:blur(8px)}
+    .lightbox-top{display:flex;align-items:center;justify-content:space-between;gap:14px;border-bottom:1px solid #333952;padding:13px 16px}
+    .lightbox-top strong{font-size:.96rem}
+    .lightbox-close{border:1px solid #657096;border-radius:10px;background:#242a42;color:white;cursor:pointer;font-size:1.3rem;padding:1px 12px}
+    .lightbox-body{max-height:calc(100dvh - 115px);overflow:auto;display:flex;justify-content:center;padding:14px;background:#0b0e1a}
+    .lightbox .shot{width:min(520px,calc(100vw - 70px));height:auto;flex:none;border-radius:11px;border:1px solid #30364e}
+    .lightbox-footer{color:#b9beda;text-align:center;font-size:.77rem;padding:4px 8px 10px}
+    @media(max-width:760px){.actions{grid-template-columns:1fr;max-width:390px}.actions .platform-btn{width:100%}.feedback .buttons{grid-template-columns:1fr}.feedback .buttons .platform-btn{width:100%}}
   </style>
 </head>
 <body>
@@ -101,35 +124,36 @@
       <h1 id="hero-title">See GigInsight<br>in action</h1>
       <p>Track earnings, time, mileage and profit across your gig apps — all in one place. Understand the numbers behind your work and make better decisions about every shift.</p>
       <div class="actions">
-        <a class="btn" href="https://play.google.com/apps/testing/com.gigtrackerprototype.gig_tracker_native">▶ &nbsp;Join Android Beta</a>
-        <a class="btn outline" href="https://testflight.apple.com/join/PmaKHYBY">Join iPhone Beta ↗</a>
+        <a class="btn platform-btn" href="https://play.google.com/apps/testing/com.gigtrackerprototype.gig_tracker_native"><svg class="os-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.12 7.15 4.58 4.5l.89-.52 1.57 2.72A9 9 0 0 1 12 5.45c1.85 0 3.58.45 4.96 1.25l1.57-2.72.89.52-1.54 2.65A7.8 7.8 0 0 1 20 13v6a2 2 0 0 1-2 2h-1v-6H7v6H6a2 2 0 0 1-2-2v-6a7.8 7.8 0 0 1 2.12-5.85zM8.5 9.6a.9.9 0 1 0 0 1.8.9.9 0 0 0 0-1.8zm7 0a.9.9 0 1 0 0 1.8.9.9 0 0 0 0-1.8z"/></svg><span>Join Android Beta</span></a>
+        <a class="btn platform-btn" href="https://testflight.apple.com/join/PmaKHYBY"><svg class="os-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M18.71 19.5c-.83 1.24-1.71 2.46-3.09 2.49-1.36.03-1.8-.81-3.36-.81-1.56 0-2.05.78-3.33.84-1.34.05-2.36-1.33-3.19-2.57C4.04 16.95 2.75 12.45 4.6 9.23a4.87 4.87 0 0 1 4.14-2.53c1.29-.03 2.5.87 3.29.87.79 0 2.28-1.08 3.84-.92a4.67 4.67 0 0 1 3.67 1.99 4.55 4.55 0 0 0-2.17 3.82 4.4 4.4 0 0 0 2.69 4.03c-.45 1.17-1.03 2.25-1.35 3.01zM15.89 4.95A4.42 4.42 0 0 0 16.92 1.5a4.41 4.41 0 0 0-3.08 1.6 4.2 4.2 0 0 0-1.03 3.35 3.66 3.66 0 0 0 3.08-1.5z"/></svg><span>Join iPhone Beta</span></a>
       </div>
       <p class="hint">Public beta. Features and availability may change with testing and feedback.</p>
     </div>
     <div class="hero-side" aria-label="GigInsight monthly insights preview">
-      <div class="phone"><div class="shot insights" role="img" aria-label="Example September earnings summary inside GigInsight"></div></div>
+      <button class="preview-trigger hero-preview" type="button" data-preview="insights" data-title="Monthly financial insights" aria-label="Enlarge monthly insights screenshot"><span class="phone"><span class="shot insights" role="img" aria-label="Example September earnings summary inside GigInsight"></span></span></button>
       <span class="hero-note">Turn your gig work into clear insights ↙</span>
     </div>
   </section>
 
   <section id="screenshots" class="showcase">
     <div class="section-head"><div><div class="eyebrow">Inside the app</div><h2>Built for your day-to-day gig work</h2><p>Real screens from the current GigInsight Android beta. Example figures shown are for demonstration.</p></div></div>
+    <p class="zoom-hint">Tap a screenshot to enlarge it.</p>
     <div id="features" class="feature-grid">
       <article class="feature">
         <div class="copy"><h3>◷ &nbsp;Timer and work-state tracking</h3><span class="mini-label">AVAILABLE NOW</span><p>Track Active, Searching, Idle and Break time, with a separate order timer to understand where each hour goes.</p></div>
-        <div class="shot-wrap"><div class="shot timer" role="img" aria-label="GigInsight work status and order timer screen"></div></div>
+        <div class="shot-wrap"><button type="button" class="preview-trigger" data-preview="timer" data-title="Timer and work-state tracking" aria-label="Enlarge Timer and work-state tracking screenshot"><span class="shot timer" role="img" aria-label="GigInsight work status and order timer screen"></span></button></div>
       </article>
       <article class="feature">
         <div class="copy"><h3>▥ &nbsp;Profit and mileage insights</h3><span class="mini-label">AVAILABLE NOW</span><p>See earnings, profit, business miles, hourly rates, costs and trends in daily and monthly insights.</p></div>
-        <div class="shot-wrap"><div class="shot insights" role="img" aria-label="GigInsight monthly financial overview screen"></div></div>
+        <div class="shot-wrap"><button type="button" class="preview-trigger" data-preview="insights" data-title="Monthly financial insights" aria-label="Enlarge Monthly financial insights screenshot"><span class="shot insights" role="img" aria-label="GigInsight monthly financial overview screen"></span></button></div>
       </article>
       <article class="feature">
         <div class="copy"><h3>◫ &nbsp;Multiple gig profiles</h3><span class="mini-label">AVAILABLE NOW</span><p>Keep Spark, DoorDash, Uber Eats and other platforms in separate profiles. Export and restore your data using JSON backups.</p></div>
-        <div class="shot-wrap"><div class="shot profiles" role="img" aria-label="GigInsight profile switcher with several gig platforms"></div></div>
+        <div class="shot-wrap"><button type="button" class="preview-trigger" data-preview="profiles" data-title="Multiple gig profiles" aria-label="Enlarge Multiple gig profiles screenshot"><span class="shot profiles" role="img" aria-label="GigInsight profile switcher with several gig platforms"></span></button></div>
       </article>
       <article class="feature">
         <div class="copy"><h3>▤ &nbsp;Daily earnings entry</h3><span class="mini-label">AVAILABLE NOW</span><p>Record daily trip earnings, tips, incentives, mileage and expenses. Review completed orders and workday profitability.</p></div>
-        <div class="shot-wrap"><div class="shot today" role="img" aria-label="GigInsight daily entry and daily financial summary screen"></div></div>
+        <div class="shot-wrap"><button type="button" class="preview-trigger" data-preview="today" data-title="Daily earnings entry" aria-label="Enlarge Daily earnings entry screenshot"><span class="shot today" role="img" aria-label="GigInsight daily entry and daily financial summary screen"></span></button></div>
       </article>
     </div>
   </section>
@@ -169,21 +193,41 @@
     <div class="install-grid">
       <article class="install-card"><h3>Android · Google Play</h3><p>Install through GigInsight's official Google Play open test.</p>
         <ol><li>Open the Android beta invitation.</li><li>Sign in with the Google account used in your Play Store and select <strong>Become a tester</strong> if prompted.</li><li>Use the Play Store link to install or update GigInsight.</li></ol>
-        <a class="btn small" href="https://play.google.com/apps/testing/com.gigtrackerprototype.gig_tracker_native">Join GigInsight Android Beta ↗</a>
+        <a class="btn small platform-btn" href="https://play.google.com/apps/testing/com.gigtrackerprototype.gig_tracker_native"><svg class="os-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.12 7.15 4.58 4.5l.89-.52 1.57 2.72A9 9 0 0 1 12 5.45c1.85 0 3.58.45 4.96 1.25l1.57-2.72.89.52-1.54 2.65A7.8 7.8 0 0 1 20 13v6a2 2 0 0 1-2 2h-1v-6H7v6H6a2 2 0 0 1-2-2v-6a7.8 7.8 0 0 1 2.12-5.85zM8.5 9.6a.9.9 0 1 0 0 1.8.9.9 0 0 0 0-1.8zm7 0a.9.9 0 1 0 0 1.8.9.9 0 0 0 0-1.8z"/></svg><span>Join GigInsight Android Beta</span></a>
         <p class="hint">The current open test is version 0.3.1 (Build 14). Play Store availability can lag after an update.</p>
       </article>
       <article class="install-card"><h3>iPhone · Apple TestFlight</h3><p>Install through Apple's official TestFlight beta testing app.</p>
         <ol><li>Open the iPhone TestFlight invitation.</li><li>If needed, install the free TestFlight app from the App Store.</li><li>Return here and open the invitation again, then tap <strong>Accept</strong> and <strong>Install</strong>.</li></ol>
-        <a class="btn small outline" href="https://testflight.apple.com/join/PmaKHYBY">Open GigInsight in TestFlight ↗</a>
+        <a class="btn small platform-btn" href="https://testflight.apple.com/join/PmaKHYBY"><svg class="os-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M18.71 19.5c-.83 1.24-1.71 2.46-3.09 2.49-1.36.03-1.8-.81-3.36-.81-1.56 0-2.05.78-3.33.84-1.34.05-2.36-1.33-3.19-2.57C4.04 16.95 2.75 12.45 4.6 9.23a4.87 4.87 0 0 1 4.14-2.53c1.29-.03 2.5.87 3.29.87.79 0 2.28-1.08 3.84-.92a4.67 4.67 0 0 1 3.67 1.99 4.55 4.55 0 0 0-2.17 3.82 4.4 4.4 0 0 0 2.69 4.03c-.45 1.17-1.03 2.25-1.35 3.01zM15.89 4.95A4.42 4.42 0 0 0 16.92 1.5a4.41 4.41 0 0 0-3.08 1.6 4.2 4.2 0 0 0-1.03 3.35 3.66 3.66 0 0 0 3.08-1.5z"/></svg><span>Open GigInsight in TestFlight</span></a>
         <p class="hint">If TestFlight asks for a redemption code, come back and tap the invitation link again. No code is needed with the public link while testing is open.</p>
       </article>
     </div>
   </section>
   <section class="feedback">
     <div><h3>Help shape GigInsight</h3><p>Tell us what you use, report bugs and vote on what should come next.</p></div>
-    <div class="buttons"><a class="btn" href="https://play.google.com/apps/testing/com.gigtrackerprototype.gig_tracker_native">Join Android Beta</a><a class="btn outline" href="https://testflight.apple.com/join/PmaKHYBY">Join iPhone Beta</a></div>
+    <div class="buttons"><a class="btn platform-btn" href="https://play.google.com/apps/testing/com.gigtrackerprototype.gig_tracker_native"><svg class="os-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.12 7.15 4.58 4.5l.89-.52 1.57 2.72A9 9 0 0 1 12 5.45c1.85 0 3.58.45 4.96 1.25l1.57-2.72.89.52-1.54 2.65A7.8 7.8 0 0 1 20 13v6a2 2 0 0 1-2 2h-1v-6H7v6H6a2 2 0 0 1-2-2v-6a7.8 7.8 0 0 1 2.12-5.85zM8.5 9.6a.9.9 0 1 0 0 1.8.9.9 0 0 0 0-1.8zm7 0a.9.9 0 1 0 0 1.8.9.9 0 0 0 0-1.8z"/></svg><span>Join Android Beta</span></a><a class="btn platform-btn" href="https://testflight.apple.com/join/PmaKHYBY"><svg class="os-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M18.71 19.5c-.83 1.24-1.71 2.46-3.09 2.49-1.36.03-1.8-.81-3.36-.81-1.56 0-2.05.78-3.33.84-1.34.05-2.36-1.33-3.19-2.57C4.04 16.95 2.75 12.45 4.6 9.23a4.87 4.87 0 0 1 4.14-2.53c1.29-.03 2.5.87 3.29.87.79 0 2.28-1.08 3.84-.92a4.67 4.67 0 0 1 3.67 1.99 4.55 4.55 0 0 0-2.17 3.82 4.4 4.4 0 0 0 2.69 4.03c-.45 1.17-1.03 2.25-1.35 3.01zM15.89 4.95A4.42 4.42 0 0 0 16.92 1.5a4.41 4.41 0 0 0-3.08 1.6 4.2 4.2 0 0 0-1.03 3.35 3.66 3.66 0 0 0 3.08-1.5z"/></svg><span>Join iPhone Beta</span></a></div>
   </section>
 </main>
 <footer class="wrap"><p>Questions or beta feedback? <a href="mailto:support@giginsight.app?subject=GigInsight%20Beta%20Feedback">support@giginsight.app</a></p><p><a href="../index.html">Privacy Policy</a> · <a href="mailto:support@giginsight.app?subject=GigInsight%20Support">Email Support</a></p></footer>
+<dialog id="screenLightbox" class="lightbox" aria-labelledby="lightboxTitle">
+  <div class="lightbox-top"><strong id="lightboxTitle">GigInsight screenshot</strong><button id="closeLightbox" class="lightbox-close" type="button" aria-label="Close enlarged screenshot">&times;</button></div>
+  <div class="lightbox-body"><div id="lightboxShot" class="shot insights" role="img" aria-label="Enlarged screenshot"></div></div>
+  <div class="lightbox-footer">Tap outside or press Back / Esc to close</div>
+</dialog>
+<script>
+(function(){
+  const dlg=document.getElementById('screenLightbox'), img=document.getElementById('lightboxShot');
+  const title=document.getElementById('lightboxTitle');
+  document.querySelectorAll('[data-preview]').forEach(button=>button.addEventListener('click',()=>{
+    const cls=button.getAttribute('data-preview');
+    img.className='shot '+cls;
+    img.setAttribute('aria-label',button.getAttribute('data-title')+' expanded screenshot');
+    title.textContent=button.getAttribute('data-title');
+    if(typeof dlg.showModal==='function')dlg.showModal();
+  }));
+  document.getElementById('closeLightbox').addEventListener('click',()=>dlg.close());
+  dlg.addEventListener('click',event=>{if(event.target===dlg)dlg.close();});
+})();
+</script>
 </body>
 </html>

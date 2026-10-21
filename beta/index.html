@@ -3,143 +3,187 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Join the GigInsight Beta</title>
-  <meta name="description" content="Join the GigInsight beta on Android or iPhone and help shape the future of GigInsight for gig workers.">
-  <meta property="og:title" content="Join the GigInsight Beta">
-  <meta property="og:description" content="Try GigInsight on Android or iPhone and help shape upcoming features, UI improvements, and GigInsight Pro.">
+  <meta name="theme-color" content="#0b0e1a">
+  <title>GigInsight — Track More. Know More. Earn Smarter.</title>
+  <meta name="description" content="See GigInsight in action: track gig earnings, active time, orders, mileage, operating costs and profit. Join the Android and iPhone public beta.">
+  <meta property="og:title" content="GigInsight — See your gig work more clearly">
+  <meta property="og:description" content="Screenshots, features, roadmap and public beta links for Android and iPhone.">
   <style>
-    :root {
-      color-scheme: light dark;
-      --accent: #2b8fb8;
-      --accent2: #35a878;
-      --border: rgba(127,127,127,.28);
-      --muted: rgba(127,127,127,.9);
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      line-height: 1.55;
-      background:
-        radial-gradient(circle at 20% 0%, rgba(43,143,184,.16), transparent 34rem),
-        radial-gradient(circle at 80% 15%, rgba(53,168,120,.14), transparent 30rem);
-    }
-    main { max-width: 900px; margin: 0 auto; padding: 40px 20px 64px; }
-    .hero { text-align: center; padding: 28px 0 18px; }
-    h1 { font-size: clamp(2rem, 6vw, 3.5rem); margin: 0 0 10px; }
-    h2 { margin-top: 2rem; }
-    .lead { font-size: 1.12rem; max-width: 700px; margin: 0 auto; opacity: .86; }
-    .platforms { display: grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap: 14px; margin: 26px 0; }
-    .card { border: 1px solid var(--border); border-radius: 18px; padding: 20px; background: rgba(127,127,127,.055); }
-    .button {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 12px 18px;
-      border-radius: 999px;
-      text-decoration: none;
-      font-weight: 700;
-      background: linear-gradient(90deg,var(--accent),var(--accent2));
-      color: white;
-    }
-    .disabled { filter: grayscale(.5); opacity: .68; cursor: default; }
-    .status { font-size: .78rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
-    .available { color: #35a878; }
-    .development { color: #c58a25; }
-    .planned { color: #7280a3; }
-    ul { padding-left: 1.2rem; }
-    li { margin: .55rem 0; }
-    .fine { font-size: .9rem; opacity: .7; }
-    .footer { text-align: center; margin-top: 34px; font-size: .9rem; opacity: .72; }
-    a { color: inherit; }
+    :root { color-scheme:dark;--bg:#0b0e1a;--bg2:#101426;--panel:#14192b;--panel2:#191e31;--line:#333a58;--white:#f6f6ff;--soft:#d0d4eb;--muted:#a9b1d0;--accent:#9187ff;--accent2:#b4bbff;--green:#6df0ae;--amber:#ffc27b; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0;color:var(--white);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:radial-gradient(ellipse 55% 25% at 63% 9%,rgba(98,85,235,.27),transparent 100%),radial-gradient(ellipse 30% 18% at 10% 65%,rgba(50,72,178,.12),transparent 100%),var(--bg);line-height:1.55; }
+    a { color:inherit; }
+    .wrap { width:min(1150px,calc(100% - 40px));margin-inline:auto; }
+    .topbar { border-bottom:1px solid rgba(255,255,255,.08);background:rgba(12,15,28,.83);position:sticky;top:0;z-index:20;backdrop-filter:blur(12px); }
+    .topbar .wrap { display:flex;align-items:center;justify-content:space-between;min-height:70px;gap:16px; }
+    .brand { display:flex;align-items:center;gap:11px;text-decoration:none;font-size:1.28rem;font-weight:850;letter-spacing:-.04em;white-space:nowrap; }
+    .bars {display:flex;gap:4px;align-items:flex-end;height:25px;}
+    .bars i {display:block;width:5px;border-radius:3px;background:var(--accent2);}
+    .bars i:nth-child(1){height:9px}.bars i:nth-child(2){height:16px}.bars i:nth-child(3){height:24px}
+    .beta-tag,.tag {display:inline-block;padding:4px 9px;border-radius:7px;background:rgba(134,121,255,.2);color:var(--accent2);font-size:.69rem;font-weight:800;letter-spacing:.04em;}
+    nav {display:flex;gap:22px;align-items:center;}
+    nav a {text-decoration:none;font-size:.86rem;color:var(--soft);}
+    nav a:hover,nav a:focus-visible {color:#fff;text-decoration:underline;text-underline-offset:7px;}
+    .hero { display:grid;grid-template-columns:1.13fr .85fr;align-items:center;gap:50px;padding:77px 0 70px;min-height:550px; }
+    .eyebrow { color:var(--accent2);text-transform:uppercase;letter-spacing:.16em;font-size:.77rem;font-weight:800; }
+    h1 { font-size:clamp(2.5rem,5.5vw,5.1rem);line-height:1.03;letter-spacing:-.06em;margin:14px 0 24px; }
+    .hero p {max-width:580px;color:var(--soft);font-size:1.12rem;}
+    .actions {display:flex;gap:12px;flex-wrap:wrap;margin:27px 0 13px;}
+    .btn {display:inline-flex;align-items:center;justify-content:center;gap:9px;text-decoration:none;padding:13px 19px;border-radius:12px;background:linear-gradient(110deg,#7167f6,#a18cff);color:#fff;font-weight:780;line-height:1.25;box-shadow:0 10px 26px rgba(83,74,212,.2); }
+    .btn:hover {filter:brightness(1.12);}
+    .btn.outline {background:rgba(255,255,255,.06);border:1px solid #576080;color:var(--white);box-shadow:none;}
+    .btn.small {font-size:.87rem;padding:11px 15px;}
+    .hint {font-size:.79rem !important;color:var(--muted) !important;}
+    .hero-side {position:relative;display:flex;justify-content:center;align-items:center;min-height:510px;}
+    .hero-side:before {content:"";position:absolute;width:360px;height:360px;border-radius:50%;background:rgba(114,104,246,.22);filter:blur(84px);}
+    .phone {width:242px;height:510px;border:7px solid #05060b;border-radius:35px;overflow:hidden;background:#0e1019;position:relative;box-shadow:0 0 0 2px #536186,0 24px 60px rgba(0,0,0,.54);}
+    .phone:after {content:"";position:absolute;left:38%;right:38%;top:4px;height:7px;border-radius:12px;background:#05060b;}
+    .shot {background-image:url("assets/giginsight-beta-screens.webp");background-size:400% 100%;background-repeat:no-repeat;background-color:#101219;aspect-ratio:140/300;display:block;}
+    .shot.insights {background-position:0% 0%}
+    .shot.timer {background-position:33.333% 0%}
+    .shot.profiles {background-position:66.666% 0%}
+    .shot.today {background-position:100% 0%}
+    .phone .shot {width:100%;height:100%;}
+    .hero-note {position:absolute;right:0;top:25%;font-weight:650;font-size:.9rem;color:var(--accent2);width:146px;transform:rotate(-6deg);}
+    .section-head {display:flex;justify-content:space-between;gap:22px;align-items:end;margin:0 0 24px;}
+    h2 {font-size:clamp(1.7rem,3vw,2.4rem);line-height:1.13;letter-spacing:-.04em;margin:0 0 9px;}
+    h3 {margin:0 0 10px;font-size:1.06rem;letter-spacing:-.02em;}
+    .section-head p,.intro {margin:0;color:var(--muted);}
+    .showcase {padding:26px 0 30px;}
+    .feature-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;}
+    .feature {border:1px solid var(--line);border-radius:17px;background:linear-gradient(145deg,rgba(29,34,56,.82),rgba(13,17,30,.94));display:grid;grid-template-columns:minmax(0,1fr) 39%;gap:14px;overflow:hidden;min-height:280px;}
+    .feature .copy {padding:25px 0 22px 23px;}
+    .feature p {font-size:.88rem;color:var(--soft);margin:10px 0 0;}
+    .mini-label {display:inline-flex;margin:2px 0 5px;background:rgba(137,132,255,.2);color:#b6bbff;padding:3px 8px;font-size:.65rem;border-radius:10px;letter-spacing:.03em;font-weight:780;}
+    .shot-wrap {position:relative;align-self:stretch;overflow:hidden;padding-top:13px;display:flex;justify-content:center;}
+    .shot-wrap .shot {width:178px;min-width:178px;height:382px;border-radius:24px 24px 0 0;border:4px solid #06070f;border-bottom:0;box-shadow:0 0 0 1px #434f76,0 10px 20px #0006;}
+    .feature.note-card {grid-template-columns:minmax(0,1fr) 38%;}
+    .roadmap {padding:56px 0 24px;}
+    .roadmap-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;}
+    .roadmap-box {background:rgba(24,28,47,.86);border:1px solid var(--line);border-radius:16px;padding:21px;min-height:275px;}
+    .roadmap-box h3 {font-size:1.02rem;}
+    .roadmap-box .status {font-size:.69rem;text-transform:uppercase;letter-spacing:.08em;font-weight:760;color:var(--muted);}
+    .roadmap-box ul {padding-left:19px;color:var(--soft);font-size:.86rem;margin:13px 0 0;}
+    .roadmap-box li {padding-left:3px;margin:8px 0;}
+    .roadmap-box.available h3 {color:var(--green)}.roadmap-box.developing h3 {color:#c99eff}.roadmap-box.planned h3 {color:var(--amber)}
+    .install {padding:35px 0;}
+    .install-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:20px;}
+    .install-card {padding:25px;background:rgba(27,32,51,.84);border:1px solid var(--line);border-radius:16px;}
+    .install-card p,.install-card li {color:var(--soft);font-size:.9rem;}
+    .install-card ol {padding-left:22px;}
+    .install-card li {margin:7px 0;}
+    .feedback {margin:34px 0 48px;padding:26px;background:linear-gradient(115deg,#443db3,#6960df);border-radius:17px;display:flex;gap:22px;align-items:center;justify-content:space-between;}
+    .feedback p {margin:4px 0 0;font-size:.9rem;opacity:.92;}
+    .feedback .buttons {display:flex;gap:10px;flex-wrap:wrap;}
+    .feedback .btn {background:#fff;color:#3d33a2;box-shadow:none;}
+    .feedback .btn.outline {background:#11152c;color:white;border-color:#11152c;}
+    footer {text-align:center;color:var(--muted);padding:0 0 35px;font-size:.86rem;}
+    footer a {color:var(--soft);}
+    :focus-visible {outline:3px solid var(--accent2);outline-offset:4px;}
+    @media (max-width:980px){.hero{gap:15px}.hero-note{display:none}.feature{grid-template-columns:1fr 37%}.feature .copy{padding:18px 0 18px 18px}.shot-wrap .shot{width:145px;min-width:145px;height:310px}.roadmap-box{padding:16px}}
+    @media (max-width:760px){nav{gap:10px}nav a:nth-child(1),nav a:nth-child(3){display:none}.hero{grid-template-columns:1fr;padding:44px 0 32px;min-height:unset;gap:12px}.hero-side{min-height:350px}.phone{height:370px;width:177px;border-width:5px;border-radius:27px}.feature-grid,.install-grid{grid-template-columns:1fr}.roadmap-grid{grid-template-columns:1fr}.roadmap-box{min-height:unset}.feedback{flex-direction:column;text-align:center;align-items:stretch}.feedback .buttons{justify-content:center}.section-head{align-items:start;flex-direction:column}.feature{min-height:245px}.shot-wrap .shot{height:313px;width:146px;min-width:146px}}
+    @media (max-width:390px){.brand{font-size:1.1rem}.topbar .wrap{gap:8px}nav a{font-size:.78rem}.feature .copy{padding:17px 0 14px 14px}.feature p{font-size:.8rem}.shot-wrap .shot{width:120px;min-width:120px;height:258px}}
+    @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
   </style>
 </head>
 <body>
-<main>
-  <section class="hero">
-    <h1>Help shape GigInsight</h1>
-    <p class="lead">
-      GigInsight helps gig workers understand earnings, time, mileage, operating cost, profit, and performance.
-      Join the public beta, use it during real gig work, and tell us what should come next.
-    </p>
-  </section>
-
-  <section class="platforms">
-    <div class="card">
-      <div class="status available">Android beta</div>
-      <h2>Google Play</h2>
-      <p>Join GigInsight's public Android beta through Google Play.</p>
-      <h3>How to install on Android</h3>
-      <ol>
-        <li>Tap <strong>Join GigInsight Android Beta</strong> below.</li>
-        <li>Sign in to the Google account you use in the Play Store and tap <strong>Become a tester</strong> if prompted.</li>
-        <li>Follow the Google Play link to install or update GigInsight. The latest open-testing release is 0.3.1 (14).</li>
-      </ol>
-      <a class="button" href="https://play.google.com/apps/testing/com.gigtrackerprototype.gig_tracker_native">Join GigInsight Android Beta</a>
-      <p class="fine">If Play still shows an older version, allow time for availability to update, then reopen the beta link using the same Google account.</p>
-    </div>
-    <div class="card">
-      <div class="status available">iPhone beta</div>
-      <h2>TestFlight</h2>
-      <p>Join GigInsight's iPhone beta through Apple's free TestFlight app.</p>
-      <h3>How to install on iPhone</h3>
-      <ol>
-        <li>Tap <strong>Open GigInsight in TestFlight</strong> below.</li>
-        <li>If you're asked to download TestFlight, install it from the App Store and open it.</li>
-        <li><strong>Important:</strong> If TestFlight asks for a redemption code, you don't need one. Go back to this GigInsight beta webpage and tap <strong>Open GigInsight in TestFlight</strong> again.</li>
-        <li>TestFlight should now open the GigInsight invitation. Tap <strong>Accept</strong>, then <strong>Install</strong> to start testing.</li>
-      </ol>
-      <a class="button" href="https://testflight.apple.com/join/PmaKHYBY">Open GigInsight in TestFlight</a>
-      <p class="fine"><strong>Already have TestFlight installed?</strong> Just tap the button above. If the invitation doesn't open immediately, return here and try the button again.</p>
-      <p class="fine">TestFlight is Apple's official beta-testing app. You do not need to create or enter a separate invitation code to join using this public link, provided the beta is accepting testers.</p>
-    </div>
-  </section>
-
-  <section class="card">
-    <h2>What you can test now</h2>
-    <ul>
-      <li><span class="status available">Available now</span> — Shift and work-state tracking</li>
-      <li><span class="status available">Available now</span> — Active, Searching, Idle, and Break time</li>
-      <li><span class="status available">Available now</span> — Optional order timer</li>
-      <li><span class="status available">Available now</span> — Daily earnings, tips, incentives, expenses, and mileage entry</li>
-      <li><span class="status available">Available now</span> — Profit, hourly-rate, mileage, and performance insights</li>
-      <li><span class="status available">Available now</span> — Vehicle operating-cost and tax-reserve planning</li>
-      <li><span class="status available">Available now</span> — Multiple gig profiles and data backup/import tools</li>
-    </ul>
-  </section>
-
-  <section class="card">
-    <h2>On the horizon</h2>
-    <ul>
-      <li><span class="status development">In development</span> — Automatic mileage tracking and trip review</li>
-      <li><span class="status development">In development</span> — Saved Places and smarter mileage organization</li>
-      <li><span class="status development">In development</span> — Screenshot/OCR earnings import</li>
-      <li><span class="status development">In development</span> — Advanced analytics, comparisons, and deeper historical insights</li>
-      <li><span class="status development">In development</span> — GigInsight Pro subscription features</li>
-      <li><span class="status planned">Planned</span> — Expanded reports, mileage substantiation tools, customization, and features driven by beta feedback</li>
-    </ul>
-    <p class="fine">
-      Some features listed above are still in development and are not included in the current public beta.
-      Features, packaging, and availability may change based on testing and feedback.
-    </p>
-  </section>
-
-  <section class="card">
-    <h2>Your feedback matters</h2>
-    <p>
-      During the beta, GigInsight will include tools for bug reports, feature and UI suggestions, market-fit feedback,
-      and GigInsight Pro pricing feedback. We especially want to know what you already use for gig work, what you pay for,
-      and what would make GigInsight worth keeping.
-    </p>
-    <p>
-      General feedback can also be sent to
-      <a href="mailto:support@giginsight.app?subject=GigInsight%20Beta%20Feedback">support@giginsight.app</a>.
-    </p>
-  </section>
-
-  <div class="footer">
-    <p>One link for Android and iPhone. Platform beta links on this page can be updated without requiring an app update.</p>
-    <p><a href="../index.html">Privacy Policy</a> · <a href="mailto:support@giginsight.app?subject=GigInsight%20Support">Email Support</a></p>
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="GigInsight home"><span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>GigInsight <span class="beta-tag">BETA</span></a>
+    <nav aria-label="Main navigation"><a href="#features">Features</a><a href="#screenshots">Screenshots</a><a href="#roadmap">Roadmap</a><a href="#join">Join Beta</a></nav>
   </div>
+</header>
+<main id="top" class="wrap">
+  <section class="hero" aria-labelledby="hero-title">
+    <div>
+      <div class="eyebrow">For gig workers, by a gig worker</div>
+      <h1 id="hero-title">See GigInsight<br>in action</h1>
+      <p>Track earnings, time, mileage and profit across your gig apps — all in one place. Understand the numbers behind your work and make better decisions about every shift.</p>
+      <div class="actions">
+        <a class="btn" href="https://play.google.com/apps/testing/com.gigtrackerprototype.gig_tracker_native">▶ &nbsp;Join Android Beta</a>
+        <a class="btn outline" href="https://testflight.apple.com/join/PmaKHYBY">Join iPhone Beta ↗</a>
+      </div>
+      <p class="hint">Public beta. Features and availability may change with testing and feedback.</p>
+    </div>
+    <div class="hero-side" aria-label="GigInsight monthly insights preview">
+      <div class="phone"><div class="shot insights" role="img" aria-label="Example September earnings summary inside GigInsight"></div></div>
+      <span class="hero-note">Turn your gig work into clear insights ↙</span>
+    </div>
+  </section>
+
+  <section id="screenshots" class="showcase">
+    <div class="section-head"><div><div class="eyebrow">Inside the app</div><h2>Built for your day-to-day gig work</h2><p>Real screens from the current GigInsight Android beta. Example figures shown are for demonstration.</p></div></div>
+    <div id="features" class="feature-grid">
+      <article class="feature">
+        <div class="copy"><h3>◷ &nbsp;Timer and work-state tracking</h3><span class="mini-label">AVAILABLE NOW</span><p>Track Active, Searching, Idle and Break time, with a separate order timer to understand where each hour goes.</p></div>
+        <div class="shot-wrap"><div class="shot timer" role="img" aria-label="GigInsight work status and order timer screen"></div></div>
+      </article>
+      <article class="feature">
+        <div class="copy"><h3>▥ &nbsp;Profit and mileage insights</h3><span class="mini-label">AVAILABLE NOW</span><p>See earnings, profit, business miles, hourly rates, costs and trends in daily and monthly insights.</p></div>
+        <div class="shot-wrap"><div class="shot insights" role="img" aria-label="GigInsight monthly financial overview screen"></div></div>
+      </article>
+      <article class="feature">
+        <div class="copy"><h3>◫ &nbsp;Multiple gig profiles</h3><span class="mini-label">AVAILABLE NOW</span><p>Keep Spark, DoorDash, Uber Eats and other platforms in separate profiles. Export and restore your data using JSON backups.</p></div>
+        <div class="shot-wrap"><div class="shot profiles" role="img" aria-label="GigInsight profile switcher with several gig platforms"></div></div>
+      </article>
+      <article class="feature">
+        <div class="copy"><h3>▤ &nbsp;Daily earnings entry</h3><span class="mini-label">AVAILABLE NOW</span><p>Record daily trip earnings, tips, incentives, mileage and expenses. Review completed orders and workday profitability.</p></div>
+        <div class="shot-wrap"><div class="shot today" role="img" aria-label="GigInsight daily entry and daily financial summary screen"></div></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="roadmap" class="roadmap">
+    <div class="section-head"><div><div class="eyebrow">What's next</div><h2>What's in GigInsight</h2><p>Explore what's available, what we're developing and what's on the roadmap.</p></div></div>
+    <div class="roadmap-grid">
+      <article class="roadmap-box available"><h3>✓ &nbsp;Available now</h3><div class="status">Current public beta</div>
+      <ul>
+        <li>Shift, work-state and optional order timing</li>
+        <li>Daily earnings, tips, incentives and mileage entry</li>
+        <li>Profit, hourly rates and performance insights</li>
+        <li>Operating costs and tax-reserve planning</li>
+        <li>Multiple gig profiles and JSON backup/restore</li>
+      </ul></article>
+      <article class="roadmap-box developing"><h3>⚒ &nbsp;In development</h3><div class="status">Coming to future betas</div>
+      <ul>
+        <li>Automatic mileage tracking and trip review</li>
+        <li>Saved Places and smarter mileage organization</li>
+        <li>Screenshot/OCR earnings import</li>
+        <li>Advanced analytics and comparisons</li>
+        <li>GigInsight Pro subscription features</li>
+      </ul></article>
+      <article class="roadmap-box planned"><h3>◎ &nbsp;Planned</h3><div class="status">Longer-term roadmap</div>
+      <ul>
+        <li>Expanded reports and mileage substantiation tools</li>
+        <li>More customization and themes</li>
+        <li>Further automation and insights</li>
+        <li>Features driven by beta tester feedback</li>
+      </ul></article>
+    </div>
+    <p class="hint">In-development and planned features are not included in the current public beta. Timing and availability may change based on testing and feedback.</p>
+  </section>
+
+  <section id="join" class="install">
+    <div class="section-head"><div><div class="eyebrow">Try it yourself</div><h2>Join the GigInsight public beta</h2><p>Available to testers on Android and iPhone.</p></div></div>
+    <div class="install-grid">
+      <article class="install-card"><h3>Android · Google Play</h3><p>Install through GigInsight's official Google Play open test.</p>
+        <ol><li>Open the Android beta invitation.</li><li>Sign in with the Google account used in your Play Store and select <strong>Become a tester</strong> if prompted.</li><li>Use the Play Store link to install or update GigInsight.</li></ol>
+        <a class="btn small" href="https://play.google.com/apps/testing/com.gigtrackerprototype.gig_tracker_native">Join GigInsight Android Beta ↗</a>
+        <p class="hint">The current open test is version 0.3.1 (Build 14). Play Store availability can lag after an update.</p>
+      </article>
+      <article class="install-card"><h3>iPhone · Apple TestFlight</h3><p>Install through Apple's official TestFlight beta testing app.</p>
+        <ol><li>Open the iPhone TestFlight invitation.</li><li>If needed, install the free TestFlight app from the App Store.</li><li>Return here and open the invitation again, then tap <strong>Accept</strong> and <strong>Install</strong>.</li></ol>
+        <a class="btn small outline" href="https://testflight.apple.com/join/PmaKHYBY">Open GigInsight in TestFlight ↗</a>
+        <p class="hint">If TestFlight asks for a redemption code, come back and tap the invitation link again. No code is needed with the public link while testing is open.</p>
+      </article>
+    </div>
+  </section>
+  <section class="feedback">
+    <div><h3>Help shape GigInsight</h3><p>Tell us what you use, report bugs and vote on what should come next.</p></div>
+    <div class="buttons"><a class="btn" href="https://play.google.com/apps/testing/com.gigtrackerprototype.gig_tracker_native">Join Android Beta</a><a class="btn outline" href="https://testflight.apple.com/join/PmaKHYBY">Join iPhone Beta</a></div>
+  </section>
 </main>
+<footer class="wrap"><p>Questions or beta feedback? <a href="mailto:support@giginsight.app?subject=GigInsight%20Beta%20Feedback">support@giginsight.app</a></p><p><a href="../index.html">Privacy Policy</a> · <a href="mailto:support@giginsight.app?subject=GigInsight%20Support">Email Support</a></p></footer>
 </body>
 </html>

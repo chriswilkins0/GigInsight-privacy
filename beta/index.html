@@ -147,6 +147,11 @@
       .feature-roadmap .preview-trigger{width:min(100%,350px)}
       .lightbox-body{max-height:calc(100dvh - 158px)}
     }
+
+    /* Never upscale the narrow scrolling captures beyond their original pixel width. */
+    .shot-wrap img[data-hires="insights"]{max-width:333px;margin-inline:auto}
+    .shot-wrap img[data-hires="today"]{max-width:267px;margin-inline:auto}
+    .lightbox img[data-hires]{max-width:100%}
   </style>
 </head>
 <body>

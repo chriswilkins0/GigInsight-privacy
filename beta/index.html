@@ -150,8 +150,15 @@
 
     /* Never upscale the narrow scrolling captures beyond their original pixel width. */
     .shot-wrap img[data-hires="insights"]{max-width:333px;margin-inline:auto}
-    .shot-wrap img[data-hires="today"]{max-width:267px;margin-inline:auto}
+    .shot-wrap img[data-hires="today"]{max-width:370px;margin-inline:auto}
     .lightbox img[data-hires]{max-width:100%}
+    /* Two-image Daily Entry gallery, scoped to the existing screenshot lightbox. */
+    .daily-gallery-nav{display:flex;gap:9px;align-items:center;justify-content:center;padding:10px 13px;border-bottom:1px solid #333952;background:#101426}
+    .daily-gallery-nav[hidden]{display:none}
+    .daily-gallery-nav button{flex:1;max-width:230px;min-height:42px;padding:9px 12px;border:1px solid #66709a;border-radius:10px;background:#1e243d;color:#e0e1f7;font:inherit;font-size:.92rem;font-weight:680;cursor:pointer}
+    .daily-gallery-nav button[aria-pressed="true"]{background:#7970ee;color:#fff;border-color:#9994ff}
+    .lightbox.is-daily .lightbox-body{max-height:calc(100dvh - 205px)}
+    @media(max-width:760px){.daily-gallery-nav button{font-size:.87rem}.lightbox.is-daily .lightbox-body{max-height:calc(100dvh - 205px)}}
   </style>
 </head>
 <body>
@@ -197,7 +204,7 @@
       </article>
       <article class="feature">
         <div class="copy"><h3>▤ &nbsp;Daily earnings entry</h3><span class="mini-label">AVAILABLE NOW</span><p>Record daily trip earnings, tips, incentives, mileage and expenses. Review completed orders and workday profitability.</p></div>
-        <div class="shot-wrap"><button type="button" class="preview-trigger" data-preview="today" data-title="Daily earnings entry" aria-label="Enlarge Daily earnings entry screenshot"><img class="shot today" data-hires="today" alt="GigInsight daily earnings and order entry" width="267" height="1536"></button></div>
+        <div class="shot-wrap"><button type="button" class="preview-trigger" data-preview="today" data-title="Daily Entry — Overview" aria-label="Open Daily Entry screenshot gallery: Overview and Details"><img class="shot today" data-hires="today" alt="GigInsight Daily Entry overview showing earnings, profit, tax reserve, time, miles, rates and completed orders" width="609" height="1536"></button></div>
       </article>
       <article class="feature feature-roadmap">
         <div class="copy"><h3>◇ &nbsp;See the GigInsight roadmap</h3><span class="mini-label">CURRENT &amp; UPCOMING FEATURES</span><p>See what's available in the public beta, what's being developed, and what's on the longer-term roadmap.</p></div>
@@ -259,6 +266,7 @@
 <footer class="wrap"><p>Questions or beta feedback? <a href="mailto:support@giginsight.app?subject=GigInsight%20Beta%20Feedback">support@giginsight.app</a></p><p><a href="../index.html">Privacy Policy</a> · <a href="mailto:support@giginsight.app?subject=GigInsight%20Support">Email Support</a></p><p class="brand-attribution">Android is a trademark of Google LLC. The Android robot is reproduced or modified from work created and shared by Google and used according to terms described in the <a href="https://creativecommons.org/licenses/by/3.0/">Creative Commons 3.0 Attribution License</a>. iPhone and TestFlight are trademarks of Apple Inc.</p></footer>
 <dialog id="screenLightbox" class="lightbox" aria-labelledby="lightboxTitle">
   <div class="lightbox-top"><strong id="lightboxTitle">GigInsight screenshot</strong><button id="closeLightbox" class="lightbox-close" type="button" aria-label="Close enlarged screenshot">&times;</button></div>
+  <div id="dailyGalleryNav" class="daily-gallery-nav" role="group" aria-label="Daily Entry screenshots" hidden><button type="button" data-daily-view="0" aria-pressed="true">Overview</button><button type="button" data-daily-view="1" aria-pressed="false">Details</button></div>
   <div class="lightbox-body"><p id="lightboxStatus" class="lightbox-status">Loading screenshot...</p><img id="lightboxShot" class="shot" alt="Full-size GigInsight screenshot" width="709" height="1536"></div>
   <div class="lightbox-footer"><a id="openOriginal" target="_blank" rel="noopener" href="#">Open original image at full size ↗</a><span> · Back / Esc to close</span></div>
 </dialog>
@@ -267,9 +275,12 @@
   "use strict";
   // GitHub Pages serves each real high-quality WebP screenshot in binary parts.
   // The browser reassembles the original bytes without downscaling the screenshots.
-  const counts={insights:4,roadmap:6,profiles:4,timer:6,today:4};
+  const counts={insights:4,roadmap:6,profiles:4,timer:6};
+  // New Daily Entry screenshots are independent full-resolution WebP files.
+  const singleAssets={today:'assets/hires/daily-overview.webp','today-details':'assets/hires/daily-details.webp'};
   const cache=Object.create(null);
   function imageUrl(name){
+    if(Object.prototype.hasOwnProperty.call(singleAssets,name))return Promise.resolve(singleAssets[name]);
     if(!Object.prototype.hasOwnProperty.call(counts,name))return Promise.reject(new Error('Unknown screenshot'));
     if(!cache[name]){
       cache[name]=(async()=>{
@@ -302,21 +313,46 @@
   const status=document.getElementById('lightboxStatus');
   const title=document.getElementById('lightboxTitle');
   const original=document.getElementById('openOriginal');
-  document.querySelectorAll('[data-preview]').forEach(button=>button.addEventListener('click',()=>{
-    const name=button.dataset.preview;
-    title.textContent=button.dataset.title||'GigInsight screenshot';
+  const dailyNav=document.getElementById('dailyGalleryNav');
+  const dailyViews=[
+    {key:'today',title:'Daily Entry — Overview'},
+    {key:'today-details',title:'Daily Entry — Details'}
+  ];
+  let requestToken=0;
+  function showImage(key,label){
+    const token=++requestToken;
+    title.textContent=label;
     full.removeAttribute('src');
-    full.alt='Full-size '+(button.dataset.title||'GigInsight')+' screenshot';
+    full.alt=label+' — full-resolution GigInsight screenshot';
     status.hidden=false;status.textContent='Loading full-quality image...';
-    original.hidden=true;
-    if(typeof dlg.showModal==='function')dlg.showModal();
-    imageUrl(name).then(url=>{
+    original.hidden=true;original.removeAttribute('href');
+    imageUrl(key).then(url=>{
+      if(token!==requestToken||!dlg.open)return;
       full.src=url;
       status.hidden=true;
       original.href=url;original.hidden=false;
     }).catch(()=>{
-      status.textContent='Image unavailable. Refresh the page and try again.';
+      if(token===requestToken)status.textContent='Image unavailable. Refresh the page and try again.';
     });
+  }
+  function showDaily(index){
+    dailyViews.forEach((view,i)=>{
+      dailyNav.querySelector('[data-daily-view="'+i+'"]').setAttribute('aria-pressed',String(index===i));
+    });
+    const view=dailyViews[index];
+    showImage(view.key,view.title);
+  }
+  document.querySelectorAll('[data-preview]').forEach(button=>button.addEventListener('click',()=>{
+    const key=button.dataset.preview;
+    const isDaily=key==='today';
+    dailyNav.hidden=!isDaily;
+    dlg.classList.toggle('is-daily',isDaily);
+    if(typeof dlg.showModal==='function')dlg.showModal();
+    if(isDaily)showDaily(0);
+    else showImage(key,button.dataset.title||'GigInsight screenshot');
+  }));
+  dailyNav.querySelectorAll('[data-daily-view]').forEach(button=>button.addEventListener('click',()=>{
+    showDaily(Number(button.dataset.dailyView));
   }));
   document.getElementById('closeLightbox').addEventListener('click',()=>dlg.close());
   dlg.addEventListener('click',event=>{if(event.target===dlg)dlg.close();});

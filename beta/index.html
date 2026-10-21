@@ -114,6 +114,39 @@
     .preview-trigger .shot{display:block}
     .lightbox .shot{max-height:none}
     .brand-attribution{font-size:.72rem;opacity:.78;max-width:890px;margin:20px auto 0}
+
+    /* High-resolution individual screenshots replace the old, tiny 4-screen sprite. */
+    .shot{background-image:none !important;background-color:#171b2b;aspect-ratio:auto;object-fit:contain}
+    .hero-preview .phone{display:block}
+    .phone .shot{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+    .feature-grid{gap:22px;grid-template-columns:repeat(2,minmax(0,1fr))}
+    .feature{display:flex;flex-direction:column;min-height:0;gap:0}
+    .feature .copy{padding:22px 24px 0}
+    .feature p{font-size:.98rem;max-width:490px}
+    .shot-wrap{padding:18px 17px 0;height:580px;display:flex;justify-content:center;align-items:flex-start;overflow:hidden;align-self:stretch}
+    .shot-wrap .preview-trigger,.feature .preview-trigger{display:block;width:min(100%,380px);height:auto;margin:0 auto;align-self:flex-start;flex:none}
+    .shot-wrap .shot{display:block;width:100%;height:auto;min-width:0;max-width:100%;min-height:360px;aspect-ratio:auto;object-fit:contain;object-position:top;border:2px solid #3c4466;border-radius:17px 17px 0 0;box-shadow:0 8px 38px rgba(0,0,0,.45)}
+    .feature-roadmap{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;align-items:start}
+    .feature-roadmap .copy{padding:35px 32px}
+    .feature-roadmap .shot-wrap{height:410px;padding:18px 24px 0}
+    .feature-roadmap .preview-trigger{width:min(100%,300px)}
+    .preview-trigger:hover .shot{border-color:#8785d9}
+    .lightbox-body{display:block;text-align:center;overflow:auto;padding:12px}
+    .lightbox .shot{display:block;width:auto;height:auto;min-height:unset;max-width:min(100%,709px);max-height:none;margin:0 auto;border:0;border-radius:9px}
+    .lightbox-footer a{color:#d6d8ff;text-decoration:underline;text-underline-offset:3px}
+    .lightbox-footer a:focus-visible{outline:2px solid #c3bfff}
+    .lightbox-status{font-size:.85rem;color:#c7c8e4;padding:10px}
+    @media(max-width:760px){
+      .feature-grid{grid-template-columns:1fr;gap:22px}
+      .feature .copy{padding:21px 20px 0}
+      .shot-wrap{height:575px;padding:16px 15px 0}
+      .shot-wrap .preview-trigger,.feature .preview-trigger{width:min(100%,370px)}
+      .feature-roadmap{grid-column:auto;display:flex;flex-direction:column}
+      .feature-roadmap .copy{padding:21px 20px 0}
+      .feature-roadmap .shot-wrap{width:100%;height:470px}
+      .feature-roadmap .preview-trigger{width:min(100%,350px)}
+      .lightbox-body{max-height:calc(100dvh - 158px)}
+    }
   </style>
 </head>
 <body>
@@ -136,30 +169,34 @@
       <p class="hint">Public beta. Features and availability may change with testing and feedback.</p>
     </div>
     <div class="hero-side" aria-label="GigInsight monthly insights preview">
-      <button class="preview-trigger hero-preview" type="button" data-preview="insights" data-title="Monthly financial insights" aria-label="Enlarge monthly insights screenshot"><span class="phone"><span class="shot insights" role="img" aria-label="Example September earnings summary inside GigInsight"></span></span></button>
+      <button class="preview-trigger hero-preview" type="button" data-preview="insights" data-title="Monthly financial insights" aria-label="Enlarge monthly insights screenshot"><span class="phone"><img class="shot insights" data-hires="insights" alt="GigInsight monthly profit and mileage insights preview" width="333" height="1536"></span></button>
       <span class="hero-note">Turn your gig work into clear insights ↙</span>
     </div>
   </section>
 
   <section id="screenshots" class="showcase">
-    <div class="section-head"><div><div class="eyebrow">Inside the app</div><h2>Built for your day-to-day gig work</h2><p>Real screens from the current GigInsight Android beta. Example figures shown are for demonstration.</p></div></div>
-    <p class="zoom-hint">Tap a screenshot to enlarge it.</p>
+    <div class="section-head"><div><div class="eyebrow">Inside the app</div><h2>Built for your day-to-day gig work</h2><p>Real screens from the GigInsight Android beta. Tap to view the full-resolution screenshots.</p></div></div>
+    <p class="zoom-hint">Tap any screenshot to view it larger or open the original image.</p>
     <div id="features" class="feature-grid">
       <article class="feature">
         <div class="copy"><h3>◷ &nbsp;Timer and work-state tracking</h3><span class="mini-label">AVAILABLE NOW</span><p>Track Active, Searching, Idle and Break time, with a separate order timer to understand where each hour goes.</p></div>
-        <div class="shot-wrap"><button type="button" class="preview-trigger" data-preview="timer" data-title="Timer and work-state tracking" aria-label="Enlarge Timer and work-state tracking screenshot"><span class="shot timer" role="img" aria-label="GigInsight work status and order timer screen"></span></button></div>
+        <div class="shot-wrap"><button type="button" class="preview-trigger" data-preview="timer" data-title="Timer and work-state tracking" aria-label="Enlarge Timer and work-state tracking screenshot"><img class="shot timer" data-hires="timer" alt="GigInsight work status and separate order timer" width="709" height="1536"></button></div>
       </article>
       <article class="feature">
         <div class="copy"><h3>▥ &nbsp;Profit and mileage insights</h3><span class="mini-label">AVAILABLE NOW</span><p>See earnings, profit, business miles, hourly rates, costs and trends in daily and monthly insights.</p></div>
-        <div class="shot-wrap"><button type="button" class="preview-trigger" data-preview="insights" data-title="Monthly financial insights" aria-label="Enlarge Monthly financial insights screenshot"><span class="shot insights" role="img" aria-label="GigInsight monthly financial overview screen"></span></button></div>
+        <div class="shot-wrap"><button type="button" class="preview-trigger" data-preview="insights" data-title="Monthly financial insights" aria-label="Enlarge Monthly financial insights screenshot"><img class="shot insights" data-hires="insights" alt="GigInsight September monthly financial overview" width="333" height="1536"></button></div>
       </article>
       <article class="feature">
         <div class="copy"><h3>◫ &nbsp;Multiple gig profiles</h3><span class="mini-label">AVAILABLE NOW</span><p>Keep Spark, DoorDash, Uber Eats and other platforms in separate profiles. Export and restore your data using JSON backups.</p></div>
-        <div class="shot-wrap"><button type="button" class="preview-trigger" data-preview="profiles" data-title="Multiple gig profiles" aria-label="Enlarge Multiple gig profiles screenshot"><span class="shot profiles" role="img" aria-label="GigInsight profile switcher with several gig platforms"></span></button></div>
+        <div class="shot-wrap"><button type="button" class="preview-trigger" data-preview="profiles" data-title="Multiple gig profiles" aria-label="Enlarge Multiple gig profiles screenshot"><img class="shot profiles" data-hires="profiles" alt="GigInsight multiple gig profiles and backup settings" width="709" height="1536"></button></div>
       </article>
       <article class="feature">
         <div class="copy"><h3>▤ &nbsp;Daily earnings entry</h3><span class="mini-label">AVAILABLE NOW</span><p>Record daily trip earnings, tips, incentives, mileage and expenses. Review completed orders and workday profitability.</p></div>
-        <div class="shot-wrap"><button type="button" class="preview-trigger" data-preview="today" data-title="Daily earnings entry" aria-label="Enlarge Daily earnings entry screenshot"><span class="shot today" role="img" aria-label="GigInsight daily entry and daily financial summary screen"></span></button></div>
+        <div class="shot-wrap"><button type="button" class="preview-trigger" data-preview="today" data-title="Daily earnings entry" aria-label="Enlarge Daily earnings entry screenshot"><img class="shot today" data-hires="today" alt="GigInsight daily earnings and order entry" width="267" height="1536"></button></div>
+      </article>
+      <article class="feature feature-roadmap">
+        <div class="copy"><h3>◇ &nbsp;See the GigInsight roadmap</h3><span class="mini-label">CURRENT &amp; UPCOMING FEATURES</span><p>See what's available in the public beta, what's being developed, and what's on the longer-term roadmap.</p></div>
+        <div class="shot-wrap"><button type="button" class="preview-trigger" data-preview="roadmap" data-title="GigInsight feature roadmap" aria-label="Enlarge feature roadmap screenshot"><img class="shot roadmap-shot" data-hires="roadmap" alt="GigInsight current features, development features, and future roadmap" width="528" height="1536"></button></div>
       </article>
     </div>
   </section>
@@ -217,19 +254,64 @@
 <footer class="wrap"><p>Questions or beta feedback? <a href="mailto:support@giginsight.app?subject=GigInsight%20Beta%20Feedback">support@giginsight.app</a></p><p><a href="../index.html">Privacy Policy</a> · <a href="mailto:support@giginsight.app?subject=GigInsight%20Support">Email Support</a></p><p class="brand-attribution">Android is a trademark of Google LLC. The Android robot is reproduced or modified from work created and shared by Google and used according to terms described in the <a href="https://creativecommons.org/licenses/by/3.0/">Creative Commons 3.0 Attribution License</a>. iPhone and TestFlight are trademarks of Apple Inc.</p></footer>
 <dialog id="screenLightbox" class="lightbox" aria-labelledby="lightboxTitle">
   <div class="lightbox-top"><strong id="lightboxTitle">GigInsight screenshot</strong><button id="closeLightbox" class="lightbox-close" type="button" aria-label="Close enlarged screenshot">&times;</button></div>
-  <div class="lightbox-body"><div id="lightboxShot" class="shot insights" role="img" aria-label="Enlarged screenshot"></div></div>
-  <div class="lightbox-footer">Tap outside or press Back / Esc to close</div>
+  <div class="lightbox-body"><p id="lightboxStatus" class="lightbox-status">Loading screenshot...</p><img id="lightboxShot" class="shot" alt="Full-size GigInsight screenshot" width="709" height="1536"></div>
+  <div class="lightbox-footer"><a id="openOriginal" target="_blank" rel="noopener" href="#">Open original image at full size ↗</a><span> · Back / Esc to close</span></div>
 </dialog>
 <script>
 (function(){
-  const dlg=document.getElementById('screenLightbox'), img=document.getElementById('lightboxShot');
+  "use strict";
+  // GitHub Pages serves each real high-quality WebP screenshot in binary parts.
+  // The browser reassembles the original bytes without downscaling the screenshots.
+  const counts={insights:4,roadmap:6,profiles:4,timer:6,today:4};
+  const cache=Object.create(null);
+  function imageUrl(name){
+    if(!Object.prototype.hasOwnProperty.call(counts,name))return Promise.reject(new Error('Unknown screenshot'));
+    if(!cache[name]){
+      cache[name]=(async()=>{
+        const parts=await Promise.all(Array.from({length:counts[name]},async(_,index)=>{
+          const path='assets/hires/'+name+'-'+String(index).padStart(2,'0')+'.bin';
+          const response=await fetch(path);
+          if(!response.ok)throw new Error('Failed to load '+path);
+          return response.arrayBuffer();
+        }));
+        return URL.createObjectURL(new Blob(parts,{type:'image/webp'}));
+      })();
+    }
+    return cache[name];
+  }
+  function hydrate(img){
+    if(img.dataset.hydrating)return;
+    img.dataset.hydrating='1';
+    imageUrl(img.dataset.hires).then(url=>{img.src=url;img.classList.add('ready');}).catch(()=>{img.alt+=' (image temporarily unavailable)';});
+  }
+  const previews=Array.from(document.querySelectorAll('img[data-hires]'));
+  if('IntersectionObserver' in window){
+    const observer=new IntersectionObserver(entries=>{
+      for(const entry of entries){if(entry.isIntersecting){hydrate(entry.target);observer.unobserve(entry.target);}}
+    },{rootMargin:'600px'});
+    previews.forEach(img=>observer.observe(img));
+  } else previews.forEach(hydrate);
+
+  const dlg=document.getElementById('screenLightbox');
+  const full=document.getElementById('lightboxShot');
+  const status=document.getElementById('lightboxStatus');
   const title=document.getElementById('lightboxTitle');
+  const original=document.getElementById('openOriginal');
   document.querySelectorAll('[data-preview]').forEach(button=>button.addEventListener('click',()=>{
-    const cls=button.getAttribute('data-preview');
-    img.className='shot '+cls;
-    img.setAttribute('aria-label',button.getAttribute('data-title')+' expanded screenshot');
-    title.textContent=button.getAttribute('data-title');
+    const name=button.dataset.preview;
+    title.textContent=button.dataset.title||'GigInsight screenshot';
+    full.removeAttribute('src');
+    full.alt='Full-size '+(button.dataset.title||'GigInsight')+' screenshot';
+    status.hidden=false;status.textContent='Loading full-quality image...';
+    original.hidden=true;
     if(typeof dlg.showModal==='function')dlg.showModal();
+    imageUrl(name).then(url=>{
+      full.src=url;
+      status.hidden=true;
+      original.href=url;original.hidden=false;
+    }).catch(()=>{
+      status.textContent='Image unavailable. Refresh the page and try again.';
+    });
   }));
   document.getElementById('closeLightbox').addEventListener('click',()=>dlg.close());
   dlg.addEventListener('click',event=>{if(event.target===dlg)dlg.close();});

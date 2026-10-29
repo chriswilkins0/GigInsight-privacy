@@ -405,16 +405,56 @@ Make clear that trying GigInsight is optional and separate from the vehicle-cost
     return true;
   }
 
+  function openChatGPT(){
+    const ua = navigator.userAgent || '';
+    const isAndroid = /Android/i.test(ua);
+    const isiOS = /iPhone|iPad|iPod/i.test(ua);
+
+    if(isAndroid){
+      // Target the official ChatGPT Android package first. If it is not
+      // installed or the link cannot be handled, Chrome falls back to web.
+      const fallback = encodeURIComponent(chatUrl);
+      window.location.href =
+        'intent://chatgpt.com/#Intent;scheme=https;package=com.openai.chatgpt;' +
+        'S.browser_fallback_url=' + fallback + ';end';
+      return;
+    }
+
+    if(isiOS){
+      // ChatGPT's iOS app supports an app URL scheme, but Apple ultimately
+      // controls whether a website may hand the user into the installed app.
+      // If the app does not take over, fall back to the normal web experience.
+      let leftPage = false;
+      const markLeft = function(){ leftPage = true; };
+      document.addEventListener('visibilitychange', function onVisibility(){
+        if(document.hidden){
+          leftPage = true;
+          document.removeEventListener('visibilitychange', onVisibility);
+        }
+      });
+      window.addEventListener('pagehide', markLeft, {once:true});
+      window.location.href = 'com.openai.chat://chatgpt.com/';
+      setTimeout(function(){
+        if(!leftPage && !document.hidden){
+          window.location.href = chatUrl;
+        }
+      }, 1200);
+      return;
+    }
+
+    window.location.href = chatUrl;
+  }
+
   async function handleCopy(openAfter){
     statusEl.style.color = 'var(--green)';
     statusEl.textContent = '';
     try{
       await copyPrompt();
       statusEl.textContent = openAfter
-        ? 'Prompt copied — opening ChatGPT. Paste it into a new conversation.'
+        ? 'Prompt copied — opening the ChatGPT app when available. Paste it into a new conversation.'
         : 'Prompt copied. Open ChatGPT, paste it into a new conversation, and send.';
       if(openAfter){
-        setTimeout(function(){ window.location.href = chatUrl; }, 350);
+        setTimeout(openChatGPT, 250);
       }
     }catch(e){
       statusEl.style.color = '#ffc27b';

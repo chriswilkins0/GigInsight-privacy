@@ -79,19 +79,19 @@
     <p>The assessment considers your actual vehicle, fuel economy, maintenance, repairs, financing, driving habits and ownership plans. ChatGPT will recommend the cost method that best fits what you are trying to measure.</p>
 
     <div class="steps" aria-label="How it works">
-      <div class="step"><span class="num">1</span><strong>Copy</strong><span>One tap copies the full assessment instructions.</span></div>
-      <div class="step"><span class="num">2</span><strong>Open ChatGPT</strong><span>Paste the copied prompt into a new conversation.</span></div>
+      <div class="step"><span class="num">1</span><strong>Send</strong><span>Tap once to open your phone's share menu with the full assessment ready.</span></div>
+      <div class="step"><span class="num">2</span><strong>Choose ChatGPT</strong><span>Select ChatGPT from the share menu. The prompt is handed to the app for you.</span></div>
       <div class="step"><span class="num">3</span><strong>Answer</strong><span>ChatGPT guides you through only the questions that matter.</span></div>
       <div class="step"><span class="num">4</span><strong>Put it to work</strong><span>Use the result to judge your true driving profitability.</span></div>
     </div>
 
     <div class="actions">
-      <button class="primary" id="copyOpen" type="button">Copy Prompt &amp; Open ChatGPT</button>
+      <button class="primary" id="sendPrompt" type="button">Send Prompt to ChatGPT</button>
       <button class="secondary" id="copyOnly" type="button">Copy Prompt Only</button>
     </div>
     <div class="status" id="status" role="status" aria-live="polite"></div>
 
-    <div class="tip"><strong>When ChatGPT opens:</strong> start a new conversation, paste the prompt, and send it. You do not need to manually select any of the text below.</div>
+    <div class="tip"><strong>On your phone:</strong> tap <strong>Send Prompt to ChatGPT</strong>, then choose ChatGPT from the share menu. The full prompt is passed along for you — no highlighting or manual copy/paste required. If sharing is unavailable, use <strong>Copy Prompt Only</strong> as a fallback.</div>
 
     <p class="privacy-note">This page does not send your vehicle information to ChatGPT. It only gives you instructions to copy. You choose what information to provide in your own ChatGPT conversation. Estimates depend on the information and assumptions used, so review the result before relying on it.</p>
 
@@ -382,7 +382,6 @@ Make clear that trying GigInsight is optional and separate from the vehicle-cost
 (function(){
   const promptEl = document.getElementById('promptSource');
   const statusEl = document.getElementById('status');
-  const chatUrl = 'https://chatgpt.com/';
 
   async function copyPrompt(){
     const text = promptEl.value.trim();
@@ -405,65 +404,45 @@ Make clear that trying GigInsight is optional and separate from the vehicle-cost
     return true;
   }
 
-  function openChatGPT(){
-    const ua = navigator.userAgent || '';
-    const isAndroid = /Android/i.test(ua);
-    const isiOS = /iPhone|iPad|iPod/i.test(ua);
+  async function sendPrompt(){
+    const text = promptEl.value.trim();
+    statusEl.style.color = 'var(--green)';
+    statusEl.textContent = '';
 
-    if(isAndroid){
-      // Target the official ChatGPT Android package first. If it is not
-      // installed or the link cannot be handled, Chrome falls back to web.
-      const fallback = encodeURIComponent(chatUrl);
-      window.location.href =
-        'intent://chatgpt.com/#Intent;scheme=https;package=com.openai.chatgpt;' +
-        'S.browser_fallback_url=' + fallback + ';end';
-      return;
+    if(navigator.share){
+      try{
+        await navigator.share({text:text});
+        statusEl.textContent = 'Prompt shared. If ChatGPT is installed, choose it from your phone’s share menu.';
+        return;
+      }catch(e){
+        if(e && e.name === 'AbortError'){
+          statusEl.textContent = 'Share canceled. You can tap Send Prompt to ChatGPT again or use Copy Prompt Only.';
+          return;
+        }
+      }
     }
 
-    if(isiOS){
-      // ChatGPT's iOS app supports an app URL scheme, but Apple ultimately
-      // controls whether a website may hand the user into the installed app.
-      // If the app does not take over, fall back to the normal web experience.
-      let leftPage = false;
-      const markLeft = function(){ leftPage = true; };
-      document.addEventListener('visibilitychange', function onVisibility(){
-        if(document.hidden){
-          leftPage = true;
-          document.removeEventListener('visibilitychange', onVisibility);
-        }
-      });
-      window.addEventListener('pagehide', markLeft, {once:true});
-      window.location.href = 'com.openai.chat://chatgpt.com/';
-      setTimeout(function(){
-        if(!leftPage && !document.hidden){
-          window.location.href = chatUrl;
-        }
-      }, 1200);
-      return;
+    try{
+      await copyPrompt();
+      statusEl.textContent = 'Your browser could not open the share menu, so the full prompt was copied instead. Open ChatGPT and paste it into a new conversation.';
+    }catch(e){
+      statusEl.style.color = '#ffc27b';
+      statusEl.textContent = 'Your browser blocked sharing and copying. Open “View the prompt” below and copy the text manually.';
     }
-
-    window.location.href = chatUrl;
   }
 
-  async function handleCopy(openAfter){
+  document.getElementById('sendPrompt').addEventListener('click', sendPrompt);
+  document.getElementById('copyOnly').addEventListener('click', async function(){
     statusEl.style.color = 'var(--green)';
     statusEl.textContent = '';
     try{
       await copyPrompt();
-      statusEl.textContent = openAfter
-        ? 'Prompt copied — opening the ChatGPT app when available. Paste it into a new conversation.'
-        : 'Prompt copied. Open ChatGPT, paste it into a new conversation, and send.';
-      if(openAfter){
-        setTimeout(openChatGPT, 250);
-      }
+      statusEl.textContent = 'Prompt copied. Open ChatGPT, paste it into a new conversation, and send.';
     }catch(e){
       statusEl.style.color = '#ffc27b';
-      statusEl.textContent = 'Automatic copy was blocked. Open “View the prompt,” then try Copy Prompt again or copy the text manually.';
+      statusEl.textContent = 'Automatic copy was blocked. Open “View the prompt” below and copy the text manually.';
     }
-  }
-
-  document.getElementById('copyOpen').addEventListener('click', function(){ handleCopy(true); });
-  document.getElementById('copyOnly').addEventListener('click', function(){ handleCopy(false); });
+  });
 })();
 </script>
 </body>

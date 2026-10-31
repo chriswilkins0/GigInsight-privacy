@@ -52,6 +52,11 @@
     summary{cursor:pointer;color:var(--accent2);font-weight:750}
     textarea{width:100%;min-height:320px;margin-top:13px;padding:15px;border-radius:12px;border:1px solid #454d70;background:#0d1120;color:#dfe2f6;font:500 .78rem/1.45 ui-monospace,SFMono-Regular,Consolas,monospace;resize:vertical}
     .tip{border-left:3px solid var(--accent);padding:10px 14px;background:rgba(145,135,255,.08);border-radius:0 10px 10px 0;margin-top:18px;color:var(--soft);font-size:.9rem}
+    .browser-escape{display:none;border:1px solid #6c648f;background:rgba(145,135,255,.11);border-radius:14px;padding:16px;margin:0 0 18px}
+    .browser-escape.show{display:block}
+    .browser-escape strong{display:block;margin-bottom:5px}
+    .browser-escape p{margin:5px 0 0!important;font-size:.88rem}
+    .escape-btn{width:100%;margin-top:12px;background:rgba(255,255,255,.08);border:1px solid #6a7398;color:#fff}
     footer{text-align:center;color:var(--muted);font-size:.8rem;padding:0 0 36px}
     footer a{color:var(--soft)}
     :focus-visible{outline:3px solid var(--accent2);outline-offset:4px}
@@ -75,6 +80,11 @@
   <p class="lead">Knowing what your vehicle really costs per mile can change how you judge gig-work profitability. This guided ChatGPT assessment helps you build a personalized, evidence-based estimate using your actual vehicle and driving situation.</p>
 
   <section class="card" aria-labelledby="start-title">
+    <div class="browser-escape" id="browserEscape" role="note" aria-live="polite">
+      <strong id="browserEscapeTitle">Facebook opened this page inside its own browser.</strong>
+      <p id="browserEscapeText"></p>
+      <button class="escape-btn" id="openExternal" type="button" hidden>Open in Chrome to Continue</button>
+    </div>
     <h2 id="start-title">A few questions. One useful number.</h2>
     <p>The assessment considers your actual vehicle, fuel economy, maintenance, repairs, financing, driving habits and ownership plans. ChatGPT will recommend the cost method that best fits what you are trying to measure.</p>
 
@@ -382,6 +392,44 @@ Make clear that trying GigInsight is optional and separate from the vehicle-cost
 (function(){
   const promptEl = document.getElementById('promptSource');
   const statusEl = document.getElementById('status');
+  const sendBtn = document.getElementById('sendPrompt');
+  const escapeBox = document.getElementById('browserEscape');
+  const escapeTitle = document.getElementById('browserEscapeTitle');
+  const escapeText = document.getElementById('browserEscapeText');
+  const openExternalBtn = document.getElementById('openExternal');
+
+  const ua = navigator.userAgent || '';
+  const isAndroid = /Android/i.test(ua);
+  const isiOS = /iPhone|iPad|iPod/i.test(ua);
+  const isFacebookBrowser = /FBAN|FBAV|FB_IAB|FBIOS|FB4A/i.test(ua);
+
+  function openInChrome(){
+    const current = new URL(window.location.href);
+    const hostAndPath = current.host + current.pathname + current.search + current.hash;
+    const fallback = encodeURIComponent(window.location.href);
+    window.location.href =
+      'intent://' + hostAndPath.replace(/^\/+/, '') +
+      '#Intent;scheme=https;action=android.intent.action.VIEW;package=com.android.chrome;' +
+      'S.browser_fallback_url=' + fallback + ';end';
+  }
+
+  if(isFacebookBrowser){
+    escapeBox.classList.add('show');
+
+    if(isAndroid){
+      escapeTitle.textContent = 'Facebook opened this page inside its own browser.';
+      escapeText.textContent = 'Facebook can block the phone share menu. Open this page in Chrome first, then the Send Prompt to ChatGPT button should work normally.';
+      openExternalBtn.hidden = false;
+      sendBtn.textContent = 'Open in Chrome to Continue';
+      sendBtn.addEventListener('click', openInChrome, {once:true});
+      openExternalBtn.addEventListener('click', openInChrome);
+    } else if(isiOS){
+      escapeTitle.textContent = 'Facebook opened this page inside its own browser.';
+      escapeText.textContent = 'To use the ChatGPT share button, tap Facebook’s ••• menu and choose Open in Safari. Then return to Send Prompt to ChatGPT.';
+    } else {
+      escapeText.textContent = 'This in-app browser may block the phone share menu. Open the page in your normal browser, then try Send Prompt to ChatGPT again.';
+    }
+  }
 
   async function copyPrompt(){
     const text = promptEl.value.trim();
@@ -431,7 +479,9 @@ Make clear that trying GigInsight is optional and separate from the vehicle-cost
     }
   }
 
-  document.getElementById('sendPrompt').addEventListener('click', sendPrompt);
+  if(!(isFacebookBrowser && isAndroid)){
+    sendBtn.addEventListener('click', sendPrompt);
+  }
   document.getElementById('copyOnly').addEventListener('click', async function(){
     statusEl.style.color = 'var(--green)';
     statusEl.textContent = '';

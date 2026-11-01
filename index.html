@@ -22,7 +22,7 @@
   <p class="muted"><strong>Effective date:</strong> November 1, 2026</p>
 
   <div class="card">
-    <p><strong>Summary:</strong> GigInsight is designed to keep your gig-work information on your device. The app does not require an account, does not use advertising or analytics SDKs, and does not send your gig-work records to the developer. On Android, optional user-started automatic mileage tracking uses device location.</p>
+    <p><strong>Summary:</strong> GigInsight is designed to keep your gig-work information on your device. The app does not require an account, does not use advertising or analytics SDKs, and does not send your gig-work records to the developer. On supported Android and iOS releases, user-started automatic mileage tracking uses device location while a shift is active.</p>
   </div>
 
   <h2>Information you enter or create</h2>
@@ -37,11 +37,11 @@
   <p>The current version does not use third-party advertising SDKs or analytics SDKs.</p>
 
   <h2>Location</h2>
-  <p>On supported Android versions, GigInsight can use precise device location to automatically measure driving distance while you have started a shift and mileage tracking is enabled. GPS location can continue to be used while GigInsight is in the background, another app is on screen, or the device is locked. Mileage tracking stops when the user-started shift ends. If you do not grant location permission, you can still use GigInsight's other features and enter mileage manually.</p>
-  <p>Driving distances, GPS-based mileage leg endpoints, saved places and the related history are maintained in GigInsight's local app storage. GigInsight does not upload these gig-work records or GPS history to a developer-controlled backend and does not use location for advertising or analytics. Android's platform location and reverse-geocoding providers may process coordinates when obtaining a GPS fix or resolving location coordinates to a readable address; their handling is subject to their own policies. If you export or share a backup or mileage report, the destination you select may receive information included in that export.</p>
+  <p>On supported Android and iOS versions, GigInsight can use precise device location to automatically measure driving distance during a shift you start. GPS location can continue to be used while GigInsight is in the background, another app is on screen, or the device is locked. Mileage tracking stops when the user-started shift ends. If you do not grant location permission, you can still use GigInsight's other features and enter mileage manually.</p>
+  <p>Driving distances, GPS-based mileage leg endpoints, saved places and the related history are maintained in GigInsight's local app storage. GigInsight does not upload these gig-work records or GPS history to a developer-controlled backend and does not use location for advertising or analytics. Your phone's operating-system location and reverse-geocoding services (including Apple Core Location and geocoding on iOS, and Android location and geocoding providers) may process location information to provide GPS fixes or readable addresses under their respective policies. If you export or share a backup or mileage report, the destination you select may receive information included in that export.</p>
 
   <h2>Notifications and background operation</h2>
-  <p>Depending on platform and version, GigInsight may use operating-system notifications and a foreground service to support user-started timers, optional quick controls, and automatic mileage recording while a shift is active, even when the app is not on screen. This functionality does not, by itself, send your timer data to the developer.</p>
+  <p>Depending on platform and version, GigInsight may use Android foreground services or iOS user-started background location updates, plus operating-system notifications and quick controls, to support timers and automatic mileage recording while a shift is active even when the app is not on screen. This functionality does not, by itself, send your timer data to the developer.</p>
 
   <h2>Accounts and authentication</h2>
   <p>The current version does not require a GigInsight account or sign-in.</p>

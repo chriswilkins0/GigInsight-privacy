@@ -19,10 +19,10 @@
 <body>
 <main>
   <h1>GigInsight Privacy Policy</h1>
-  <p class="muted"><strong>Effective date:</strong> November 1, 2026</p>
+  <p class="muted"><strong>Effective date:</strong> November 3, 2026</p>
 
   <div class="card">
-    <p><strong>Summary:</strong> GigInsight is designed to keep your gig-work information on your device. The app does not require an account, does not use advertising or analytics SDKs, and does not send your gig-work records to the developer. On supported Android and iOS releases, user-started automatic mileage tracking uses device location while a shift is active.</p>
+    <p><strong>Summary:</strong> GigInsight is designed to keep your gig-work information on your device. The app does not require an account, does not use advertising or general-purpose behavior analytics, and does not send your gig-work records to the developer. Google's Android ML Kit screenshot reader may send diagnostic and usage metrics to Google as described below. On supported Android and iOS releases, user-started automatic mileage tracking uses device location while a shift is active.</p>
   </div>
 
   <h2>Information you enter or create</h2>
@@ -38,7 +38,11 @@
 
   <h2>Data collection and sharing</h2>
   <p>The current version of GigInsight does not operate a developer-controlled cloud backend and does not collect or transmit your gig-work records to the developer. GigInsight does not sell or rent your personal information.</p>
-  <p>The current version does not use third-party advertising SDKs or analytics SDKs.</p>
+  <p>GigInsight does not include advertising SDKs or general-purpose behavior analytics SDKs. The Android text-recognition component, Google ML Kit, can independently transmit limited technical diagnostics and API-usage metrics to Google as described below.</p>
+
+  <h2>Android OCR diagnostic data (Google ML Kit)</h2>
+  <p>GigInsight's Android earnings-screenshot feature uses Google's bundled ML Kit text-recognition SDK. The screenshot image, its detected text, and the recognition output are processed on the device and are not sent to Google by ML Kit.</p>
+  <p>Google states that ML Kit may send limited device and app information, per-installation identifiers, API-usage events, image-format and input/output size metadata, performance measurements, and error codes to Google's servers for diagnostics, maintenance, API usage analytics, and misuse prevention. This technical telemetry does not include your screenshot pixels, detected earnings amounts, or gig-work history. Google states that the ML Kit telemetry is encrypted in transit and is not shared with third parties. See <a href="https://developers.google.com/ml-kit/android-data-disclosure">Google's ML Kit Android data disclosure</a> for details.</p>
 
   <h2>Location</h2>
   <p>On supported Android and iOS versions, GigInsight can use precise device location to automatically measure driving distance during a shift you start. GPS location can continue to be used while GigInsight is in the background, another app is on screen, or the device is locked. Mileage tracking stops when the user-started shift ends. If you do not grant location permission, you can still use GigInsight's other features and enter mileage manually.</p>

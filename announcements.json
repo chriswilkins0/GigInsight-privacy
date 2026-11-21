@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "updatedAt": "2026-11-21T21:40:00Z",
+  "announcements": [
+    {
+      "id": "2026-11-21-beta-announcements-launch",
+      "title": "GigInsight announcements are live",
+      "body": "The GigInsight beta announcement inbox is now connected to a public update feed. You can read earlier announcements here even if you have push notifications turned off. No account is needed. GigInsight does not upload your shift details, earnings, or mileage to retrieve announcements.",
+      "publishedAt": "2026-11-21T21:40:00Z",
+      "category": "product"
+    },
+    {
+      "id": "2026-11-21-firebase-delivery-test",
+      "title": "Firebase push delivery verified",
+      "body": "The first opt-in GigInsight Android private-beta push notification was successfully received on a test device. Future important release notes and service notices can be published in this inbox independently of push delivery.",
+      "publishedAt": "2026-11-21T21:36:33Z",
+      "category": "beta"
+    }
+  ]
+}

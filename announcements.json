@@ -1,20 +1,13 @@
 {
   "schema": 1,
-  "updatedAt": "2026-11-21T21:40:00Z",
+  "updatedAt": "2026-11-26T07:25:26Z",
   "announcements": [
     {
-      "id": "2026-11-21-beta-announcements-launch",
-      "title": "GigInsight announcements are live",
-      "body": "The GigInsight beta announcement inbox is now connected to a public update feed. You can read earlier announcements here even if you have push notifications turned off. No account is needed. GigInsight does not upload your shift details, earnings, or mileage to retrieve announcements.",
-      "publishedAt": "2026-11-21T21:40:00Z",
-      "category": "product"
-    },
-    {
-      "id": "2026-11-21-firebase-delivery-test",
-      "title": "Firebase push delivery verified",
-      "body": "The first opt-in GigInsight Android private-beta push notification was successfully received on a test device. Future important release notes and service notices can be published in this inbox independently of push delivery.",
-      "publishedAt": "2026-11-21T21:36:33Z",
-      "category": "beta"
+      "id": "2026-11-26-android-v0.4.46-release",
+      "title": "GigInsight Beta Update — v0.4.46",
+      "body": "A major update to GigInsight is rolling out on Google Play! This release focuses on improving the accuracy, reliability, transparency, and overall usability of your gig tracking experience.\n\nNEW: UNDERSTAND YOUR NUMBERS\n\nYou can now tap individual metrics within Insights to see:\n• What each metric means.\n• How it is calculated.\n• The actual values used in your calculation.\n• Why the metric matters to your business.\n\nThis allows you to better understand and verify your earnings, expenses, profitability, mileage, time, and estimated tax information.\n\nIMPROVED TIME TRACKING\n\nTime tracking terminology and calculations have been standardized throughout the app, including notifications and floating controls.\n\n• Active Time — time spent actively working.\n• Searching Time — time spent looking for work, including repositioning.\n• Personal Time — time spent on personal activities while online.\n• Dedicated Business Time — Active + Searching.\n• Total Online Time — Active + Searching + Personal.\n\nThe Order Timer remains optional. Your tracked work time counts even when you choose not to use it.\n\nENHANCED HYPER ANALYTICS\n\nGain a more comprehensive understanding of your performance with six hourly earnings metrics:\n\n• Gross earnings per Active Hour\n• Profit per Active Hour\n• Gross earnings per Dedicated Business Hour\n• Profit per Dedicated Business Hour\n• Gross earnings per Online Hour\n• Profit per Online Hour\n\nWeekday comparisons and historical performance charts have also been improved, including more accurate weighted averages, clearer data coverage, improved chart interactions, and better handling of incomplete historical records.\n\nMissing information is now more clearly distinguished from actual zero values.\n\nGREATER CONTROL OVER GIG PROFILES\n\nYou can now choose which gig profiles contribute to your combined analytics.\n\nThis is especially useful for keeping test profiles, miscellaneous income, or other work separate from your overall gig performance without deleting their individual histories.\n\nFind this option under Settings → Profiles.\n\nIMPROVED SCREENSHOT EARNINGS IMPORT\n\nScreenshot recognition is now more reliable when identifying previously taught earnings categories, particularly when minor text recognition errors occur.\n\nAdditional safeguards help prevent ambiguous values from being assigned to the wrong earnings category.\n\nIMPROVED BACKUP AND RESTORE\n\n• Profile backups now include vehicle definitions to better preserve vehicle names and operating costs.\n• Added clearer confirmation before replacing existing profile data.\n• Improved protection of existing records during restoration.\n• Strengthened internal storage and automatic recovery safeguards.\n• Added protection against accidentally deleting tracked time from overnight shifts.\n\nUPDATED USER GUIDE\n\nThe built-in User Guide has been revised to better explain time tracking, profitability calculations, mileage tracking, the optional Order Timer, and backup functionality.\n\nIN-APP ANNOUNCEMENTS\n\nYou're reading our first official in-app software update announcement! This feature will allow us to communicate future updates, important notices, and improvements directly within GigInsight.\n\nThank you for participating in the GigInsight beta. Your feedback helps improve the app as development continues toward our official Android and iOS releases.\n\nPlease continue reporting any bugs, inconsistencies, or suggestions through the in-app feedback feature.",
+      "publishedAt": "2026-11-26T07:25:26Z",
+      "category": "release"
     }
   ]
 }
